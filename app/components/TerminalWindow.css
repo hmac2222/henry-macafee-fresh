@@ -1,0 +1,40 @@
+.cursor {
+    background: #00ff00;
+    width: 2px;
+    height: 16px;
+    display: inline-block;
+    animation: 1s blink step-end infinite;
+}
+
+@keyframes blink {
+
+    from,
+    to {
+        background: transparent
+    }
+
+    50% {
+        background: #00ff00;
+    }
+}
+
+.selected {
+    background: rgba(0, 255, 0, 0.1);
+}
+
+.bullet-column {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.bullet-item {
+    width: 10px;
+    text-align: center;
+    font-size: 1em;
+}
+
+.text-item {
+    text-align: left;
+}

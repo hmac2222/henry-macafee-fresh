@@ -18,10 +18,24 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
+  background: linear-gradient(to bottom,
       transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+}
+
+@import url('https://grainy-gradients.vercel.app/noise.svg');
+
+.noise {
+  background:
+    linear-gradient(to right, blue, transparent),
+    url(https://grainy-gradients.vercel.app/noise.svg);
+  filter: contrast(170%) brightness(1000%);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+.tech {
+  font-family: 'Brush Script MT', cursive;
+  font-weight: 100;
+  padding-left: 10px;
 }
