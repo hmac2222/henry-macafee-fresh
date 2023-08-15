@@ -1,34 +1,43 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Henry MacAfee's Portfolio - henry-macafee-fresh
+
+Welcome to the repository for Henry MacAfee's portfolio. This site features a few hobby projects I have built. Built using the power of Next.js 13, it aims to provide a seamless browsing experience while leveraging the latest web development technologies.
+
+## Prerequisites
+
+- Node.js and npm installed on your machine.
 
 ## Getting Started
 
-First, run the development server:
+To get the project up and running on your local machine, follow the steps below:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+1. **Clone the Repository**:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`git clone https://github.com/your-username/henry-macafee-fresh.git`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+2. **Navigate to the Project Directory**:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+`cd henry-macafee-fresh`
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+3. **Install the Dependencies**:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`npm i`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+4. **Run the Development Server**:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+`npm run dev`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+Visit `http://localhost:3000` in your browser to view the site.
+
+## To-Do
+
+- [ ] Move static project resources to a document store service like Supabase.
+- [ ] Cleanup the component structure to better leverage React Server Components.
+- [ ] Tweak the application structure to make the most of conventions established in Next.js 13.
+- [ ] Add more features to leverage serverless functions and demonstrate CRUD.
+
+## Feedback & Contributions
+
+If you have suggestions, issues, or would like to contribute to the project, please open a pull request or issue.

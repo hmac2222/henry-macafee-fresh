@@ -25,10 +25,9 @@ const InteractiveTerminalProjectContent: FC = () => {
     },
     {
       title: "This Website",
-      link: "https://github.com/hmac2222",
+      link: "https://github.com/hmac2222/henry-macafee-fresh",
       technologies: [
-        { name: 'React', url: 'https://reactjs.org/' },
-        { name: 'CSS Modules', url: 'https://github.com/css-modules/css-modules' },
+        { name: 'Next.js', url: 'https://nextjs.org/' },
         { name: 'Material UI', url: 'https://material-ui.com/' },
       ],
     },
