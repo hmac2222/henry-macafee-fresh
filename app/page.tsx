@@ -11,14 +11,17 @@ const GradientBackground = dynamic(() => import('./components/GradientBackground
 const containerStyles = {
     display: 'flex',
     justifyContent: 'center',
-    height: '95vh'
+    height: '95vh',
 };
 
 const typographyStyles = {
-    fontSize: '5rem',
+    fontSize: 'calc(10vw - 5px)',
     color: 'yellow',
-    textShadow: '5px 5px 0px orange, -5px -5px 0px lime',
-    fontWeight: 'bold'
+    textShadow: 'calc(0.5vw) calc(0.5vw) 0px orange, calc(-0.5vw) calc(-0.5vw) 0px lime',
+    fontWeight: 'bold',
+    whiteSpace: 'nowrap',  // This will prevent the text from wrapping
+    overflow: 'hidden',    // This will hide any overflow
+    textOverflow: 'ellipsis' // This will add ellipsis if the text overflows
 };
 
 const Home = () => {
