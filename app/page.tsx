@@ -7,11 +7,6 @@ const GradientBackground = dynamic(() => import('./components/GradientBackground
     ssr: false
 });
 
-const DynamicMobileCheck = dynamic(() => import('./components/MobileCheck'), {
-    ssr: false
-    // You can add a loading component if desired
-  });
-
 // Extract styles into separate objects
 const containerStyles = {
     display: 'flex',
@@ -30,13 +25,11 @@ const Home = () => {
     return (
         <GradientBackground>
             <WindowEffectMidground>
-                <DynamicMobileCheck>
-                    <Box sx={containerStyles}>
-                        <Typography sx={typographyStyles}>
-                            hi, my name is Henry
-                        </Typography>
-                    </Box>
-                </DynamicMobileCheck>
+                <Box sx={containerStyles}>
+                    <Typography sx={typographyStyles}>
+                        hi, my name is Henry
+                    </Typography>
+                </Box>
             </WindowEffectMidground>
         </GradientBackground>
     );

@@ -39,3 +39,68 @@ body {
   font-weight: 100;
   padding-left: 10px;
 }
+
+.arrow-keys-overlay {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align left */
+  gap: 10px;
+  z-index: 1000;
+}
+
+.arrows {
+  display: grid;
+  grid-template-areas:
+      ". up ."
+      "left down right";
+  gap: 10px;
+}
+
+.arrows > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #333;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #000;
+  cursor: pointer;
+  font-size: 16px;
+  user-select: none;
+}
+
+.arrows > div:active {
+  background-color: #ddd;
+}
+
+.arrows > div:nth-child(1) {
+  grid-area: up;
+}
+
+.arrows > div:nth-child(2) {
+  grid-area: left;
+}
+
+.arrows > div:nth-child(3) {
+  grid-area: down;
+}
+
+.arrows > div:nth-child(4) {
+  grid-area: right;
+}
+
+.arrow-keys-overlay > div:nth-child(2) {
+  border: 1px solid #333;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #000;
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 16px;
+  user-select: none;
+}

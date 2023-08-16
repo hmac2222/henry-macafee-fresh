@@ -12,6 +12,11 @@ interface Option {
     action: () => void;
 }
 
+const isMobileDevice = () => {
+    const ua = navigator.userAgent;
+    return /(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua) || /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(ua);
+}
+
 const InteractiveTerminalContent: FC<InteractiveTerminalContentProps> = ({ children, step, setStep }) => {
     const [content, setContent] = useState<React.ReactNode[]>([children]);
     const [keypressCount, setKeypressCount] = useState(0);
@@ -82,6 +87,19 @@ const InteractiveTerminalContent: FC<InteractiveTerminalContentProps> = ({ child
                     {index === selectedOption ? `•  ${option.label}` : `  ${option.label}`}
                 </div>
             ))}
+            
+            {/* 2. If it's a mobile device, display the arrow keys overlay */}
+            {isMobileDevice() && (
+                <div className="arrow-keys-overlay">
+                    <div className="arrows">
+                        <div onTouchStart={() => handleKeyDown({ key: 'ArrowUp' } as KeyboardEvent)}>↑</div>
+                        <div onTouchStart={() => handleKeyDown({ key: 'ArrowLeft' } as KeyboardEvent)}>←</div>
+                        <div onTouchStart={() => handleKeyDown({ key: 'ArrowDown' } as KeyboardEvent)}>↓</div>
+                        <div onTouchStart={() => handleKeyDown({ key: 'ArrowRight' } as KeyboardEvent)}>→</div>
+                    </div>
+                    <div onTouchStart={() => handleKeyDown({ key: 'Enter' } as KeyboardEvent)}>Enter</div>
+                </div>
+            )}
         </>
     );
 };
