@@ -3,6 +3,7 @@ import { FC } from 'react';
 import InteractiveTerminalContent from './InteractiveTerminalContent';
 import './TerminalWindow.css';  // Import the css file
 import InteractiveTerminalProjectContent from './InteractiveTerminalProjectContent';
+import { useMediaQuery } from '@mui/material';
 
 interface Props {
     children: React.ReactNode;
@@ -16,28 +17,30 @@ const TerminalWindow: FC<Props> = ({ children, step, setStep }) => {
     let height: string;
     let backgroundColor: string;
 
+    const isMobile = useMediaQuery('(max-width:600px)');
+
     switch (step) {
         case 0:
             opacity = 0;
-            width = '640px';
+            width = isMobile ? '320px' : '640px';
             height = '480px';
             backgroundColor = 'rgba(0,0,0, 0.6)';
             break;
         case 1:
             opacity = 1;
-            width = '640px';
+            width = isMobile ? '320px' : '640px';
             height = '480px';
             backgroundColor = 'rgba(0,0,0, 0.6)';
             break;
         case 2:
             opacity = 1;
-            width = '640px';
+            width = isMobile ? '320px' : '640px';
             height = '480px';
             backgroundColor = 'rgba(0,0,0, 0.6)';
             break;
         default:
             opacity = 0;
-            width = '640px';
+            width = isMobile ? '320px' : '640px';
             height = '480px';
             backgroundColor = 'rgba(0,0,0, 0.6)';
     }
