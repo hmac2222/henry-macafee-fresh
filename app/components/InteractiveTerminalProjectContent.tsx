@@ -68,7 +68,7 @@ const InteractiveTerminalProjectContent: FC = () => {
   }, [handleKeyDown]);
 
   return (
-    <>
+    <span className='InteractiveTerminalContent'>
       {content.map((line, index) => (
         <div key={index}>{line}</div>
       ))}
@@ -86,7 +86,7 @@ const InteractiveTerminalProjectContent: FC = () => {
             {isMobileDevice() && (
                 <ArrowKeys handleKeyDown={handleKeyDown} />
             )}
-    </>
+    </span>
   );
 };
 

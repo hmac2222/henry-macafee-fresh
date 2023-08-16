@@ -40,6 +40,10 @@ body {
   padding-left: 10px;
 }
 
+.InteractiveTerminalContent * {
+  user-select: none;
+}
+
 .arrow-keys-overlay {
   position: fixed;
   bottom: 10px;
@@ -102,5 +106,9 @@ body {
   cursor: pointer;
   padding: 5px 10px;
   font-size: 16px;
+  user-select: none;
+}
+
+.arrow-keys-overlay, .arrow-keys-overlay * {
   user-select: none;
 }
