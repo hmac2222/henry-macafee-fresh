@@ -1,5 +1,6 @@
 "use client"
 import { FC, useState, useEffect, useCallback } from 'react';
+import ArrowKeys from './ArrowKeys';
 
 interface InteractiveTerminalContentProps {
     children: React.ReactNode;
@@ -88,17 +89,8 @@ const InteractiveTerminalContent: FC<InteractiveTerminalContentProps> = ({ child
                 </div>
             ))}
             
-            {/* 2. If it's a mobile device, display the arrow keys overlay */}
             {isMobileDevice() && (
-                <div className="arrow-keys-overlay">
-                    <div className="arrows">
-                        <div onTouchStart={() => handleKeyDown({ key: 'ArrowUp' } as KeyboardEvent)}>↑</div>
-                        <div onTouchStart={() => handleKeyDown({ key: 'ArrowLeft' } as KeyboardEvent)}>←</div>
-                        <div onTouchStart={() => handleKeyDown({ key: 'ArrowDown' } as KeyboardEvent)}>↓</div>
-                        <div onTouchStart={() => handleKeyDown({ key: 'ArrowRight' } as KeyboardEvent)}>→</div>
-                    </div>
-                    <div onTouchStart={() => handleKeyDown({ key: 'Enter' } as KeyboardEvent)}>Enter</div>
-                </div>
+                <ArrowKeys handleKeyDown={handleKeyDown} />
             )}
         </>
     );

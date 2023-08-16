@@ -1,4 +1,5 @@
 import { FC, useState, useEffect, useCallback } from 'react';
+import ArrowKeys from './ArrowKeys';
 
 interface Option {
   title: string;
@@ -43,6 +44,11 @@ const InteractiveTerminalProjectContent: FC = () => {
   const [selectedOption, setSelectedOption] = useState(0);
   const [content, setContent] = useState(['projects:', '']);
 
+  const isMobileDevice = () => {
+    const ua = navigator.userAgent;
+    return /(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua) || /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(ua);
+}
+
   const handleKeyDown = useCallback((event: KeyboardEvent) => {
     if (event.key === 'ArrowUp' && options.length > 0) {
       setSelectedOption(prevSelectedOption => (prevSelectedOption - 1 + options.length) % options.length);
@@ -77,7 +83,9 @@ const InteractiveTerminalProjectContent: FC = () => {
           </span>
         </div>
       ))}
-
+            {isMobileDevice() && (
+                <ArrowKeys handleKeyDown={handleKeyDown} />
+            )}
     </>
   );
 };
