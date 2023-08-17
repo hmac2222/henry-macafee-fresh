@@ -48,13 +48,16 @@ const InteractiveTerminalContent: FC<InteractiveTerminalContentProps> = ({ child
 
     const handleKeyDown = useCallback((event: KeyboardEvent) => {
         if (content.length < 3) {
-            if (event.key === 'Enter' && step !== 2) {
+            if (event.key === 'Enter') {
                 setContent([...content, 'hi, I am Henry MacAfee, software engineer', 'i would love to show you some things: ']);
-            } else if (keypressCount < 5) {
-                setKeypressCount(keypressCount + 1);
+                setKeypressCount(0)
             } else {
-                setContent([...content, '(please press Enter...)']);
-                setKeypressCount(0);
+                if (keypressCount < 4) {
+                    setKeypressCount(keypressCount + 1);
+                } else if (!content.includes('(please press Enter...)')) {
+                    setContent([...content, '(please press Enter...)']);
+                    setKeypressCount(0)
+                }
             }
         } else {
             switch (event.key) {
@@ -72,6 +75,7 @@ const InteractiveTerminalContent: FC<InteractiveTerminalContentProps> = ({ child
             }
         }
     }, [content, keypressCount, selectedOption]);
+    
 
     useEffect(() => {
         window.addEventListener('keydown', handleKeyDown);
