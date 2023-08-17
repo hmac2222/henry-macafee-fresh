@@ -1,14 +1,14 @@
-import { FC, useState, useEffect, useCallback } from 'react';
-import ArrowKeys from './ArrowKeys';
+import { FC, useState, useEffect, useCallback } from 'react'
+import ArrowKeys from './ArrowKeys'
 
 interface InteractiveTerminalProjectContentProps {
   setStep: (step: number) => void
 }
 
 interface Option {
-  title: string;
-  url: string;
-  isProject: boolean;
+  title: string
+  url: string
+  isProject: boolean
 }
 
 const InteractiveTerminalProjectContent: FC<InteractiveTerminalProjectContentProps> = ({ setStep }) => {
@@ -36,49 +36,58 @@ const InteractiveTerminalProjectContent: FC<InteractiveTerminalProjectContentPro
         { name: 'Material UI', url: 'https://material-ui.com/' },
       ],
     },
-  ];
+  ]
 
   
   const options: Option[] = projects.reduce((options, project) => {
-    options.push({ title: project.title, url: project.link, isProject: true });
-    project.technologies.forEach(tech => options.push({ title: tech.name, url: tech.url, isProject: false }));
-    return options;
-  }, [] as Option[]);
+    options.push({ title: project.title, url: project.link, isProject: true })
+    project.technologies.forEach(tech => options.push({ title: tech.name, url: tech.url, isProject: false }))
+    return options
+  }, [] as Option[])
 
-  options.push({ title: 'Back', url: '', isProject: true });
+  options.push({ title: 'Back', url: '', isProject: true })
 
-  const [selectedOption, setSelectedOption] = useState(0);
-  const [content, setContent] = useState(['projects:', '']);
+  const [selectedOption, setSelectedOption] = useState(0)
+  const [content, setContent] = useState(['projects:', ''])
 
   const isMobileDevice = () => {
-    const ua = navigator.userAgent;
-    return /(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua) || /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(ua);
+    const ua = navigator.userAgent
+    return /(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua) || /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(ua)
 }
+
+  const handleBackButton = (event: Event) => {
+    event.preventDefault()
+    setStep(2)
+  }
 
   const handleKeyDown = useCallback((event: KeyboardEvent) => {
     if (event.key === 'ArrowUp' && options.length > 0) {
-      setSelectedOption(prevSelectedOption => (prevSelectedOption - 1 + options.length) % options.length);
+      setSelectedOption(prevSelectedOption => (prevSelectedOption - 1 + options.length) % options.length)
     } else if (event.key === 'ArrowDown' && options.length > 0) {
-      setSelectedOption(prevSelectedOption => (prevSelectedOption + 1) % options.length);
+      setSelectedOption(prevSelectedOption => (prevSelectedOption + 1) % options.length)
     } else if (event.key === 'Enter') {
         if (options[selectedOption].title === 'Back') {
           setStep(2)
         } else {
-          window.open(options[selectedOption].url, "_blank");
+          window.open(options[selectedOption].url, "_blank")
         }
     } else if (event.key === 'Escape' || event.key === 'ArrowLeft') {
       setStep(2)
     }
       
-  }, [options, selectedOption]);
+  }, [options, selectedOption])
 
   useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown);
+    window.history.pushState(null, '')
+
+    window.addEventListener('keydown', handleKeyDown)
+    window.addEventListener('popstate', handleBackButton)
 
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [handleKeyDown]);
+      window.removeEventListener('keydown', handleKeyDown)
+      window.removeEventListener('popstate', handleBackButton)
+    }
+  }, [handleKeyDown])
 
   return (
     <span className='InteractiveTerminalContent'>
@@ -100,7 +109,7 @@ const InteractiveTerminalProjectContent: FC<InteractiveTerminalProjectContentPro
                 <ArrowKeys handleKeyDown={handleKeyDown} />
             )}
     </span>
-  );
-};
+  )
+}
 
-export default InteractiveTerminalProjectContent;
+export default InteractiveTerminalProjectContent
