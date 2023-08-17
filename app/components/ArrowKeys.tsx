@@ -20,4 +20,4 @@ const ArrowKeys: FC<ArrowKeysProps> = ({handleKeyDown}) => {
     )
 }
 
-export default ArrowKeys;
+export default ArrowKeys
