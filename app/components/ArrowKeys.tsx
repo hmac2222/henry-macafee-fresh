@@ -14,6 +14,7 @@ const ArrowKeys: FC<ArrowKeysProps> = ({handleKeyDown}) => {
         <div onTouchStart={() => handleKeyDown({ key: 'ArrowRight' } as KeyboardEvent)}>→</div>
     </div>
     <div onTouchStart={() => handleKeyDown({ key: 'Enter' } as KeyboardEvent)}>Enter</div>
+    <div onTouchStart={() => handleKeyDown({ key: 'Escape' } as KeyboardEvent)}>Esc</div>
     </div>
 }
 
