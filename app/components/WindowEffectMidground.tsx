@@ -1,54 +1,71 @@
 'use client'
-import { FC, useEffect, useState } from 'react';
-import TerminalWindow from './TerminalWindow';
+import { FC, useEffect, useState } from 'react'
+import TerminalWindow from './TerminalWindow'
+import { useRouter, usePathname } from 'next/navigation'
 
 interface Window {
-    id: number;
-    x: number;
-    y: number;
-    width: number;
-    height: number;
+    id: number
+    x: number
+    y: number
+    width: number
+    height: number
 }
 
 interface Props {
-    children: React.ReactNode;
+    children: React.ReactNode
 }
 
 const WindowEffectMidground: FC<Props> = ({ children }) => {
-    const [windows, setWindows] = useState<Window[]>([]);
-    const [step, setStep] = useState(0);
+    const [windows, setWindows] = useState<Window[]>([])
+    const router = useRouter()
+    const pathname = usePathname()
+
+    const currentStep = pathname.split('/step/')[1]
+    const step = currentStep ? parseInt(currentStep) : 0;
+
+    
+
+    const setStep = (newStep: number) => {
+        router.push(`/step/${newStep}`)
+    }
+
 
     useEffect(() => {
-        let id = 0;
+        let id = 0
         const interval = setInterval(() => {
             // Create a new window
-            const width = Math.max(window.innerWidth * 0.3, Math.random() * window.innerWidth);
-            const height = Math.max(window.innerHeight * 0.3, Math.random() * window.innerHeight);
+            const width = Math.max(window.innerWidth * 0.3, Math.random() * window.innerWidth)
+            const height = Math.max(window.innerHeight * 0.3, Math.random() * window.innerHeight)
             const newWindow: Window = {
                 id: id++,
                 x: Math.random() * (window.innerWidth - width),
                 y: Math.random() * (window.innerHeight - height),
                 width: width,
                 height: height,
-            };
-            setWindows((windows) => [...windows, newWindow]);
+            }
+            setWindows((windows) => [...windows, newWindow])
 
             // Remove the window after .75 seconds
             setTimeout(() => {
-                setWindows((windows) => windows.filter((window) => window.id !== newWindow.id));
-            }, 750);
-        }, 500);
+                router.push('/step1')  // Update to route-based step navigation
+            }, 3000)
+
+            return () => {
+                clearInterval(interval)
+            }
+
+        }, 500)
 
         // Display the content box after 3 seconds
         setTimeout(() => {
-            setStep(1);
-            clearInterval(interval);
-        }, 3000);
+            setStep(1)
+            clearInterval(interval)
+        }, 3000)
 
         return () => {
-            clearInterval(interval);
-        };
-    }, []);
+            clearInterval(interval)
+        }
+    }, [])
 
     return (
         <div>
@@ -73,15 +90,15 @@ const WindowEffectMidground: FC<Props> = ({ children }) => {
             <style jsx>{`
                 @keyframes fade-out {
                     from {
-                        opacity: .7;
+                        opacity: .7
                     }
                     to {
-                        opacity: 0;
+                        opacity: 0
                     }
                 }
             `}</style>
         </div>
-    );
-};
+    )
+}
 
-export default WindowEffectMidground;
+export default WindowEffectMidground

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { FC } from 'react';
 import InteractiveTerminalContent from './InteractiveTerminalContent';
 import './TerminalWindow.css';  // Import the css file
@@ -12,38 +12,13 @@ interface Props {
 }
 
 const TerminalWindow: FC<Props> = ({ children, step, setStep }) => {
-    let opacity: number;
-    let width: string;
-    let height: string;
-    let backgroundColor: string;
-
     const isMobile = useMediaQuery('(max-width:600px)');
 
-    switch (step) {
-        case 0:
-            opacity = 0;
-            width = isMobile ? '320px' : '640px';
-            height = '480px';
-            backgroundColor = 'rgba(0,0,0, 0.6)';
-            break;
-        case 1:
-            opacity = 1;
-            width = isMobile ? '320px' : '640px';
-            height = '480px';
-            backgroundColor = 'rgba(0,0,0, 0.6)';
-            break;
-        case 2:
-            opacity = 1;
-            width = isMobile ? '320px' : '640px';
-            height = '480px';
-            backgroundColor = 'rgba(0,0,0, 0.6)';
-            break;
-        default:
-            opacity = 0;
-            width = isMobile ? '320px' : '640px';
-            height = '480px';
-            backgroundColor = 'rgba(0,0,0, 0.6)';
-    }
+    
+    let opacity: number = (step === 0 || step > 2) ? 0 : 1;
+    let width: string = isMobile ? '320px' : '640px';
+    let height: string = '480px';
+    let backgroundColor: string = 'rgba(0,0,0, 0.6)';
 
     return (
         <div style={{
@@ -63,10 +38,14 @@ const TerminalWindow: FC<Props> = ({ children, step, setStep }) => {
             opacity: opacity,
             transition: 'opacity 1s, width 1s, height 1s',
         }}>
-            {step < 2 ? <InteractiveTerminalContent step={step} setStep={setStep
-            }>{children}</InteractiveTerminalContent> : <InteractiveTerminalProjectContent />}
-        </div>
-    );
+        {step < 2 ? 
+            <InteractiveTerminalContent step={step} setStep={setStep}>
+                {children}
+            </InteractiveTerminalContent> 
+            : <InteractiveTerminalProjectContent />
+        }
+    </div>
+);
 };
 
 export default TerminalWindow;
