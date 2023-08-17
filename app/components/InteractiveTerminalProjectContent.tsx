@@ -38,7 +38,7 @@ const InteractiveTerminalProjectContent: FC<InteractiveTerminalProjectContentPro
     },
   ];
 
-  // Create flat list of options
+  
   const options: Option[] = projects.reduce((options, project) => {
     options.push({ title: project.title, url: project.link, isProject: true });
     project.technologies.forEach(tech => options.push({ title: tech.name, url: tech.url, isProject: false }));

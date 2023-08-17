@@ -7,7 +7,6 @@ const GradientBackground = dynamic(() => import('./components/GradientBackground
     ssr: false
 })
 
-// Extract styles into separate objects
 const containerStyles = {
     display: 'flex',
     justifyContent: 'center',
@@ -19,9 +18,9 @@ const typographyStyles = {
     color: 'yellow',
     textShadow: 'calc(0.5vw) calc(0.5vw) 0px orange, calc(-0.5vw) calc(-0.5vw) 0px lime',
     fontWeight: 'bold',
-    whiteSpace: 'nowrap',  // This will prevent the text from wrapping
-    overflow: 'hidden',    // This will hide any overflow
-    textOverflow: 'ellipsis' // This will add ellipsis if the text overflows
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis'
 }
 
 const Home = () => {

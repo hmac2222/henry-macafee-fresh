@@ -1,7 +1,7 @@
 "use client"
 import { FC } from 'react'
 import InteractiveTerminalContent from './InteractiveTerminalContent'
-import './TerminalWindow.css'  // Import the css file
+import './TerminalWindow.css'
 import InteractiveTerminalProjectContent from './InteractiveTerminalProjectContent'
 import { useMediaQuery } from '@mui/material'
 
