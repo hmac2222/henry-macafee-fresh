@@ -1,13 +1,17 @@
 import { FC, useState, useEffect, useCallback } from 'react';
 import ArrowKeys from './ArrowKeys';
 
+interface InteractiveTerminalProjectContentProps {
+  setStep: (step: number) => void
+}
+
 interface Option {
   title: string;
   url: string;
   isProject: boolean;
 }
 
-const InteractiveTerminalProjectContent: FC = () => {
+const InteractiveTerminalProjectContent: FC<InteractiveTerminalProjectContentProps> = ({ setStep }) => {
   const projects = [
     {
       title: "Pastvibe",
@@ -41,6 +45,8 @@ const InteractiveTerminalProjectContent: FC = () => {
     return options;
   }, [] as Option[]);
 
+  options.push({ title: 'Back', url: '', isProject: true });
+
   const [selectedOption, setSelectedOption] = useState(0);
   const [content, setContent] = useState(['projects:', '']);
 
@@ -55,8 +61,15 @@ const InteractiveTerminalProjectContent: FC = () => {
     } else if (event.key === 'ArrowDown' && options.length > 0) {
       setSelectedOption(prevSelectedOption => (prevSelectedOption + 1) % options.length);
     } else if (event.key === 'Enter') {
-      window.open(options[selectedOption].url, "_blank");
+        if (options[selectedOption].title === 'Back') {
+          setStep(2)
+        } else {
+          window.open(options[selectedOption].url, "_blank");
+        }
+    } else if (event.key === 'Escape' || event.key === 'ArrowLeft') {
+      setStep(2)
     }
+      
   }, [options, selectedOption]);
 
   useEffect(() => {

@@ -38,6 +38,12 @@ const TerminalWindow: FC<Props> = ({ children, step, setStep }) => {
             height = '480px';
             backgroundColor = 'rgba(0,0,0, 0.6)';
             break;
+        case 3:
+            opacity = 1;
+            width = isMobile ? '320px' : '640px';
+            height = '480px';
+            backgroundColor = 'rgba(0,0,0, 0.6)';
+            break;
         default:
             opacity = 0;
             width = isMobile ? '320px' : '640px';
@@ -63,8 +69,8 @@ const TerminalWindow: FC<Props> = ({ children, step, setStep }) => {
             opacity: opacity,
             transition: 'opacity 1s, width 1s, height 1s',
         }}>
-            {step < 2 ? <InteractiveTerminalContent step={step} setStep={setStep
-            }>{children}</InteractiveTerminalContent> : <InteractiveTerminalProjectContent />}
+            {step < 3 ? <InteractiveTerminalContent step={step} setStep={setStep
+            }>{children}</InteractiveTerminalContent> : <InteractiveTerminalProjectContent setStep={setStep}/>}
         </div>
     );
 };

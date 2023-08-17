@@ -19,14 +19,18 @@ const isMobileDevice = () => {
 }
 
 const InteractiveTerminalContent: FC<InteractiveTerminalContentProps> = ({ children, step, setStep }) => {
-    const [content, setContent] = useState<React.ReactNode[]>([children]);
+    const initialContent = step === 2 
+        ? [children, 'hi, I am Henry MacAfee, software engineer', 'i would love to show you some things: ']
+        : [children];
+
+    const [content, setContent] = useState<React.ReactNode[]>(initialContent);
     const [keypressCount, setKeypressCount] = useState(0);
     const [selectedOption, setSelectedOption] = useState(0);
 
     const options: Option[] = [
         {
             label: 'portfolio',
-            action: () => setStep(2)
+            action: () => setStep(3)
         },
         {
             label: 'github',
@@ -44,7 +48,7 @@ const InteractiveTerminalContent: FC<InteractiveTerminalContentProps> = ({ child
 
     const handleKeyDown = useCallback((event: KeyboardEvent) => {
         if (content.length < 3) {
-            if (event.key === 'Enter') {
+            if (event.key === 'Enter' && step !== 2) {
                 setContent([...content, 'hi, I am Henry MacAfee, software engineer', 'i would love to show you some things: ']);
             } else if (keypressCount < 5) {
                 setKeypressCount(keypressCount + 1);
